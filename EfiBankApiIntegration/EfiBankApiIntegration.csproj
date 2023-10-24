@@ -1,9 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageProjectUrl>https://github.com/marcosguedes01/efipay-api-integration</PackageProjectUrl>
+    <Authors>Marcos Guedes</Authors>
+    <FileVersion>1.0.3</FileVersion>
+    <Version>1.0.3</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Title>Efí Pay API Integration</Title>
+    <Description>Api de integração com a plataforma Efí Pay</Description>
+    <RepositoryUrl>https://github.com/marcosguedes01/efipay-api-integration</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
