@@ -1,6 +1,6 @@
 ﻿namespace EfiBankApiIntegration.Requests
 {
-    public class BankingBillet
+    public class BankingBilletRequest
     {
         [JsonIgnore]
         public DateTime ExpireAt { get; set; }

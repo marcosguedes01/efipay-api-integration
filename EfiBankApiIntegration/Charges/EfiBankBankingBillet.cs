@@ -9,7 +9,7 @@ namespace EfiBankApiIntegration.Charges
         {
         }
 
-        public ChargeResponse? GenerateCharge(string accessToken, ChargeRequest body)
+        public IChargeResponse? GenerateCharge(string accessToken, ChargeRequest body)
         {
             var client = new RestClient(_baseUrl);
             var request = new RestRequest("v1/charge/one-step");
@@ -22,10 +22,10 @@ namespace EfiBankApiIntegration.Charges
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                return JsonConvert.DeserializeObject<ChargeResponse>(response.Content!);
+                return JsonConvert.DeserializeObject<ChargeResponseSuccess>(response.Content!);
             }
 
-            return null;
+            return JsonConvert.DeserializeObject<ChargeResponseError>(response.Content!);
         }
 
         public ChargeByIdResponse? GetChargeById(string accessToken, string chargeId)

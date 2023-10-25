@@ -1,12 +1,13 @@
 ﻿using EfiBankApiIntegration.Charges;
 using EfiBankApiIntegration.Requests;
+using EfiBankApiIntegration.Responses;
 
 namespace EfiBankApiIntegrationTest.Charges
 {
     public class EfiBankBankingBilletTest : EfiBankTest
     {
         [Fact]
-        public void GenerateChargeTest()
+        public void GenerateChargeWithSuccessTest()
         {
             Assert.NotNull(_accessToken);
 
@@ -20,7 +21,7 @@ namespace EfiBankApiIntegrationTest.Charges
             };
             var chargePayment = new ChargePayment
             {
-                BankingBillet = new BankingBillet
+                BankingBillet = new BankingBilletRequest
                 {
                     ExpireAt = DateTime.UtcNow.AddDays(3),
                     Customer = new ChargeCustomer
@@ -41,8 +42,49 @@ namespace EfiBankApiIntegrationTest.Charges
             var chargeResponse = charge.GenerateCharge(_accessToken, chargeRequest);
 
             Assert.NotNull(chargeResponse);
-            Assert.Equal(200, chargeResponse.Code);
-            Assert.NotNull(chargeResponse.Data.Pdf.Charge);
+            Assert.True(chargeResponse is ChargeResponseSuccess);
+            Assert.Equal(200, ((ChargeResponseSuccess)chargeResponse).Code);
+            Assert.NotNull(((ChargeResponseSuccess)chargeResponse).Data.Pdf.Charge);
+        }
+
+        [Fact]
+        public void GenerateChargeWithErrorTest()
+        {
+            Assert.NotNull(_accessToken);
+
+            var charge = new EfiBankBankingBillet(_efiBankbaseUrl);
+
+            var chargeItem = new ChargeItem
+            {
+                Name = "Produto Teste",
+                Value = 1090,
+                Amount = 2
+            };
+            var chargePayment = new ChargePayment
+            {
+                BankingBillet = new BankingBilletRequest
+                {
+                    ExpireAt = DateTime.UtcNow.AddDays(3),
+                    Customer = new ChargeCustomer
+                    {
+                        Name = "Nome Cliente",
+                        Email = "mar***@gmail.com",
+                        Cpf = "14014603059",
+                        Birth = new DateTime(1977, 01, 15),
+                        PhoneNumber = "62986070247"
+                    }
+                }
+            };
+            var chargeRequest = new ChargeRequest
+            {
+                Items = new List<ChargeItem> { chargeItem },
+                Payment = chargePayment
+            };
+            var chargeResponse = charge.GenerateCharge(_accessToken, chargeRequest);
+
+            Assert.NotNull(chargeResponse);
+            Assert.True(chargeResponse is ChargeResponseError);
+            Assert.NotNull(((ChargeResponseError)chargeResponse).ErrorDescription);
         }
 
         [Fact]
@@ -92,7 +134,7 @@ namespace EfiBankApiIntegrationTest.Charges
             Assert.NotNull(_accessToken);
 
             var charge = new EfiBankBankingBillet(_efiBankbaseUrl);
-            var chargeId = "43879033";
+            var chargeId = "43879035";
 
             var chargeResponse = charge.SettleChargeById(_accessToken, chargeId);
 
@@ -105,7 +147,7 @@ namespace EfiBankApiIntegrationTest.Charges
             Assert.NotNull(_accessToken);
 
             var charge = new EfiBankBankingBillet(_efiBankbaseUrl);
-            var chargeId = "43878849";
+            var chargeId = "43879874";
 
             var chargeResponse = charge.CancelChargeById(_accessToken, chargeId);
 

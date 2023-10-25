@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfiBankApiIntegration", "EfiBankApiIntegration\EfiBankApiIntegration.csproj", "{CAAE5391-D57C-4B30-9531-793A3A3A5C40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfiBankApiIntegration", "EfiBankApiIntegration\EfiBankApiIntegration.csproj", "{CAAE5391-D57C-4B30-9531-793A3A3A5C40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfiBankApiIntegrationTest", "EfiBankApiIntegrationTest\EfiBankApiIntegrationTest.csproj", "{BCC139E2-F769-4FD5-89AC-2A6CEF5029A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfiBankApiIntegrationTest", "EfiBankApiIntegrationTest\EfiBankApiIntegrationTest.csproj", "{BCC139E2-F769-4FD5-89AC-2A6CEF5029A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C094AAC2-2B52-42E0-8579-F2FB1E46442E}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

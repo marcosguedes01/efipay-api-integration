@@ -1,4 +1,5 @@
 ﻿using EfiBankApiIntegration.Security;
+using Microsoft.Extensions.Configuration;
 
 namespace EfiBankApiIntegrationTest
 {
@@ -9,8 +10,16 @@ namespace EfiBankApiIntegrationTest
 
         public EfiBankTest()
         {
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var clientId = config.GetSection("clientId").Value;
+            var clientSecret = config.GetSection("clientSecret").Value;
+
             var auth = new EfiBankAuthorization(_efiBankbaseUrl);
-            var authResponse = auth.Authorize("Client_Id_**", "Client_Secret_**");
+            var authResponse = auth.Authorize(clientId!, clientSecret!);
 
             _accessToken = authResponse!.AccessToken;
         }

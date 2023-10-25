@@ -3,6 +3,6 @@
     public class ChargePayment
     {
         [JsonProperty("banking_billet")]
-        public BankingBillet BankingBillet { get; set; }
+        public BankingBilletRequest BankingBillet { get; set; }
     }
 }

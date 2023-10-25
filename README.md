@@ -51,6 +51,11 @@ var chargeRequest = new ChargeRequest
     Payment = chargePayment
 };
 var chargeResponse = charge.GenerateCharge(_accessToken, chargeRequest);
+if (chargeResponse is ChargeResponseSuccess) {
+    // Successo!!
+} else if (chargeResponse is ChargeResponseError) {
+    // Erro!!
+}
 ```
 
 ### Obtendo detalhes do boleto gerado

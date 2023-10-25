@@ -12,6 +12,6 @@
         public object Message { get; set; }
 
         [JsonProperty("banking_billet")]
-        public BankingBillet BankingBillet { get; set; }
+        public BankingBilletResponse BankingBillet { get; set; }
     }
 }

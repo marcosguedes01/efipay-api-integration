@@ -1,6 +1,6 @@
 ﻿namespace EfiBankApiIntegration.Responses
 {
-    public class BankingBillet
+    public class BankingBilletResponse
     {
         [JsonProperty("barcode")]
         public string Barcode { get; set; }

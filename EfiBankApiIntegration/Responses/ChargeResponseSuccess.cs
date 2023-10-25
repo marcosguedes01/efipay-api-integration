@@ -1,6 +1,6 @@
 ﻿namespace EfiBankApiIntegration.Responses
 {
-    public class ChargeResponse
+    public class ChargeResponseSuccess : IChargeResponse
     {
         [JsonProperty("code")]
         public int Code { get; set; }
