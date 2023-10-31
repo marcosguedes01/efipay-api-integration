@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <PackageProjectUrl>https://github.com/marcosguedes01/efipay-api-integration</PackageProjectUrl>
     <Authors>Marcos Guedes</Authors>
-    <FileVersion>1.0.3</FileVersion>
-    <Version>1.0.4</Version>
+    <FileVersion>1.0.5</FileVersion>
+    <Version>1.0.5</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>Efí Pay API Integration</Title>
     <Description>Api de integração com a plataforma Efí Pay</Description>

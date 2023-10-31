@@ -5,7 +5,7 @@ namespace EfiBankApiIntegration.Charges
 {
     public interface IEfiBankBankingBillet
     {
-        IChargeResponse? GenerateCharge(string accessToken, ChargeRequest body);
+        IChargeResponse? GenerateCharge(string accessToken, IChargeRequest body);
         ChargeByIdResponse? GetChargeById(string accessToken, string chargeId);
         bool ChangeChargeExpireAt(string accessToken, string chargeId, DateTime newExpireAt);
         bool ResendChargeToEmail(string accessToken, string chargeId, string emailToSend);

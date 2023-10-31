@@ -1,6 +1,6 @@
 ﻿namespace EfiBankApiIntegration.Responses
 {
-    public class ChargeResponseError : IChargeResponse
+    public sealed class ChargeResponseError : IChargeResponse
     {
         private string _errorDescription;
 
@@ -14,7 +14,7 @@
         public ErrorDescription ErrorDescription { get; set; }
     }
 
-    public class ErrorDescription
+    public sealed class ErrorDescription
     {
         [JsonProperty("property")]
         public string Property { get; set; }

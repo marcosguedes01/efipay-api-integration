@@ -1,6 +1,6 @@
 ﻿namespace EfiBankApiIntegration.Requests
 {
-    public class ChargeCustomer
+    public sealed class PFChargeCustomer
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -9,7 +9,7 @@
         public string Email { get; set; }
 
         [JsonProperty("cpf")]
-        public string Cpf { get; set; }
+        public string CPF { get; set; }
 
         [JsonIgnore]
         public DateTime Birth { get; set; }

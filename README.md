@@ -20,7 +20,7 @@ var authResponse = auth.Authorize("Client_Id_**", "Client_Secret_**");
 _accessToken = authResponse!.AccessToken;
 ```
 
-### Gerar boleto de cobrança:
+### Gerar boleto de cobrança para Pessoa Física:
 ```
 var charge = new EfiBankBankingBillet(_efiBankbaseUrl);
 
@@ -30,32 +30,68 @@ var chargeItem = new ChargeItem
     Value = 1090,
     Amount = 2
 };
-var chargePayment = new ChargePayment
+var chargePayment = new PFChargePayment
 {
-    BankingBillet = new BankingBillet
+    BankingBillet = new PFBankingBilletRequest
     {
         ExpireAt = DateTime.UtcNow.AddDays(3),
-        Customer = new ChargeCustomer
+        Customer = new PFChargeCustomer
         {
             Name = "Nome Cliente",
-            Email = "mar***@gmail.com",
-            Cpf = "14014603059",
+            Email = TEST_EMAIL,
+            CPF = "14014603059",
             Birth = new DateTime(1977, 01, 15),
             PhoneNumber = "62986070247"
         }
     }
 };
-var chargeRequest = new ChargeRequest
+var chargeRequest = new PFChargeRequest
 {
     Items = new List<ChargeItem> { chargeItem },
     Payment = chargePayment
 };
 var chargeResponse = charge.GenerateCharge(_accessToken, chargeRequest);
+
 if (chargeResponse is ChargeResponseSuccess) {
     // Successo!!
 } else if (chargeResponse is ChargeResponseError) {
     // Erro!!
 }
+```
+
+### Gerar boleto de cobrança para Pessoa Jurídica:
+```
+var charge = new EfiBankBankingBillet(_efiBankbaseUrl);
+
+var chargeItem = new ChargeItem
+{
+    Name = "Produto Teste",
+    Value = 1090,
+    Amount = 2
+};
+var chargePayment = new PJChargePayment
+{
+    BankingBillet = new PJBankingBilletRequest
+    {
+        ExpireAt = DateTime.UtcNow.AddDays(3),
+        Customer = new PJChargeCustomer
+        {
+            Email = TEST_EMAIL,
+            PhoneNumber = "62986070247",
+            JuridicalPerson = new JuridicalPersonRequest
+            {
+                CorporateName = "Nome da Empresa",
+                CNPJ = "99794567000144"
+            }
+        }
+    }
+};
+var chargeRequest = new PJChargeRequest
+{
+    Items = new List<ChargeItem> { chargeItem },
+    Payment = chargePayment
+};
+var chargeResponse = charge.GenerateCharge(_accessToken, chargeRequest);
 ```
 
 ### Obtendo detalhes do boleto gerado
@@ -72,6 +108,12 @@ var charge = new EfiBankBankingBillet(_efiBankbaseUrl);
 var chargeId = "43879035";
 
 var chargeResponse = charge.ChangeChargeExpireAt(_accessToken, chargeId, DateTime.UtcNow.AddDays(5));
+
+if (chargeResponse is ChargeResponseSuccess) {
+    // Successo!!
+} else if (chargeResponse is ChargeResponseError) {
+    // Erro!!
+}
 ```
 
 ### Reenviar boleto gerado por e-mail

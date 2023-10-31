@@ -3,20 +3,29 @@ using EfiBankApiIntegration.Responses;
 
 namespace EfiBankApiIntegration.Charges
 {
-    public class EfiBankBankingBillet : EfiBankBankingIntegration, IEfiBankBankingBillet
+    public sealed class EfiBankBankingBillet : EfiBankBankingIntegration, IEfiBankBankingBillet
     {
         public EfiBankBankingBillet(string baseUrl) : base(baseUrl)
         {
         }
 
-        public IChargeResponse? GenerateCharge(string accessToken, ChargeRequest body)
+        public IChargeResponse? GenerateCharge(string accessToken, IChargeRequest body)
         {
             var client = new RestClient(_baseUrl);
             var request = new RestRequest("v1/charge/one-step");
 
             request.AddHeader("Authorization", "Bearer " + accessToken);
             request.AddHeader("Content-Type", "application/json");
-            request.AddBody(JsonConvert.SerializeObject(body));
+            request.AddBody(
+                JsonConvert.SerializeObject(
+                    body,
+                    Formatting.None,
+                    new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    }
+                )
+            );
 
             var response = client.ExecutePost(request);
 

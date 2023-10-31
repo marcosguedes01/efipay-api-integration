@@ -1,14 +1,11 @@
 ﻿namespace EfiBankApiIntegration.Requests
 {
-    public class ChargeRequest
+    public abstract class ChargeRequest : IChargeRequest
     {
         [JsonProperty("items")]
-        public List<ChargeItem> Items { get; set; }// = new List<ChargeItem>();
+        public List<ChargeItem> Items { get; set; }
 
-        //[JsonProperty("shippings")]
-        //public List<Shipping> Shippings { get; set; } = new List<Shipping>();
-
-        [JsonProperty("payment")]
-        public ChargePayment Payment { get; set; }
+        [JsonProperty("shippings")]
+        public List<Shipping> Shippings { get; set; }
     }
 }
