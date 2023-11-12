@@ -12,17 +12,17 @@
         public string CPF { get; set; }
 
         [JsonIgnore]
-        public DateTime Birth { get; set; }
+        public DateTime? Birth { get; set; }
 
         [JsonProperty("phone_number")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [JsonProperty("birth")]
-        public string BirthStr
+        public string? BirthStr
         {
             get
             {
-                return Birth.ToString("yyyy-MM-dd");
+                return Birth?.ToString("yyyy-MM-dd");
             }
         }
     }

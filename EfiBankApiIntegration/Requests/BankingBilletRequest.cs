@@ -2,10 +2,6 @@
 {
     public abstract class BankingBilletRequest
     {
-
-        [JsonProperty("configurations")]
-        public BilletConfiguration Configuration { get; set; }
-
         [JsonIgnore]
         public DateTime ExpireAt { get; set; }
 
@@ -17,6 +13,11 @@
                 return ExpireAt.ToString("yyyy-MM-dd");
             }
         }
+
+        [JsonProperty("configurations")]
+        public BilletConfiguration Configuration { get; set; }
+
+        
         [JsonProperty("message")]
         public string Message { get; set; }
     }

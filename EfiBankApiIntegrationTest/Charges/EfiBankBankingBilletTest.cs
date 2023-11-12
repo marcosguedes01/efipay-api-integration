@@ -17,8 +17,8 @@ namespace EfiBankApiIntegrationTest.Charges
             var chargeItem = new ChargeItem
             {
                 Name = "Produto Teste",
-                Value = 1090,
-                Amount = 2
+                Value = 23000,
+                Amount = 1
             };
             var chargePayment = new PFChargePayment
             {
@@ -30,8 +30,8 @@ namespace EfiBankApiIntegrationTest.Charges
                         Name = "Nome Cliente",
                         Email = TEST_EMAIL,
                         CPF = "14014603059",
-                        Birth = new DateTime(1977, 01, 15),
-                        PhoneNumber = "62986070247"
+                        //Birth = new DateTime(1977, 01, 15),
+                        //PhoneNumber = "62986070247"
                     },
                     Message = "Boleto Gerado Via xUnit."
                 }
@@ -138,7 +138,7 @@ namespace EfiBankApiIntegrationTest.Charges
             Assert.NotNull(_accessToken);
 
             var charge = new EfiBankBankingBillet(_efiBankbaseUrl);
-            var chargeId = "43878314";
+            var chargeId = "43898185";
 
             var chargeResponse = charge.GetChargeById(_accessToken, chargeId);
 

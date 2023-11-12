@@ -6,6 +6,6 @@
         public int Fine { get; set; }
         
         [JsonProperty("interest")]
-        public int interest { get; set; }
+        public int Interest { get; set; }
     }
 }

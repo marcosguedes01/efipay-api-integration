@@ -16,5 +16,8 @@
 
         [JsonProperty("expire_at")]
         public string ExpireAt { get; set; }
+
+        [JsonProperty("configurations")]
+        public BilletConfigurationResponse Configurations { get; set; }
     }
 }
